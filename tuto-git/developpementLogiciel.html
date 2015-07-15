@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Éléments d'ingénierie logicielle</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      
+      .left-column {
+        color: #777;
+        width: 20%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 75%;
+        float: right;
+        padding-top: 1
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle, inverse
+
+# Éléments d'ingénierie logicielle
+
+---
+
+## Fonctions à mettre en place
+
+- Configurer le poste de développement
+- Gérer les dépendances
+- Organiser le code
+- Editer le code (y.c. compiler)
+- Collaborer
+- Tester
+- Construire
+- Editer
+- Livrer
+- Déployer
+---
+
+class: center, middle
+## Exemple: Ecosystème Java au SEDOO
+---
+
+## Configurer le poste de développement
+
+**Objectif** 
+
+mettre à disposition du développeur tous les composants nécessaires au développement (SDK, Editeur, Bases de données...)
+
+**Solution**
+
+Utilisation d'**images disques**, de machines virtuelles ou de conteneurs Docker pour simplifier la configuration des postes des nouveaux arrivants.
+
+---
+## Gérer les dépendances
+
+**Objectif** 
+
+Pour fonctionner un programme peut avoir besoin de la présence d'autres librairies dans des versions bien précises.
+
+**Solution**
+
+- Maven permet de gérer les dépendances de manière transitive et versionnée (X.Y.Z). La notion de version de travail (*SNAPSHOT*) est également prise en compte.
+- Les dépendances sont récupérées/déposées sur des dépôts de libraries en ligne. 
+- Le dépôt de Sourcesup est utilisé pour les dépendances produites par l'équipe
+---
+
+## Organiser le code
+
+**Objectif** 
+
+Le code doit être physiquement structuré de manière claire afin que chaque participant puisse rapidement savoir où intervenir 
+
+**Solution**
+
+- Maven permet un premier découpage entre classes principales, classes de test, pages web, ressources
+- Java permet une classification en paquets au sein de de cette hiérachie. Ceci amène également une désambiguïsation entre les classes ayant le même nom. 
+- Les frameworks vont apporter une précision supplémentaire
+
+Exemple: GWT introduit les packages *client*,*server*,*shared*. Le pattern MVP sous entends les packages *view*,*place*,*activities*...
+
+---
+
+
+## Editer le code (y.c. compiler)
+
+**Objectif** 
+
+Utiliser au maximum une interface complète et extensible permettant de gérer efficacement l'édition du code
+
+**Solution**
+
+Utilisation d'Eclipse afin de :
+
+ - Disposer des outils de manière intégrée (Maven, Git,...)
+ - Mutualiser ses connaissances sur les moyens qu'offre l'outil pour être plus productif
+---
+
+
+## Collaborer
+**Objectif** 
+
+Pouvoir travailler à plusieurs le même code sans compromettre le travail des autres membres de l'équipe
+
+**Solution**
+
+- Git permet ce travail collaboratif
+- GitFlow propose une surcouche d'organisation efficace qui permet d'apporter des réponses simples aux cas de figure traditionnellement rencontrés (ex: nécessité de relivrer lorsqu'une anomalie en production est détectée)
+- GitFlow lie les concepts *SNAPSHOT/RELEASE* aux branches pérennes *develop/master*   
+---
+
+## Tester
+**Objectif** 
+
+Automatiser un maximum de test afin de 
+  - limiter les erreurs/régressions lors des livraisons/relivraisons de fonctionnalités de l'application
+  - limiter les campagnes de tests manuels
+
+**Solution**
+
+- Junit
+- Maven
+- Spring
+- Jenkins
+- GWT   
+---
+
+
+    </textarea>
+   <!--  <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js"> -->
+   <script src="./offline/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
