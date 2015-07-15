@@ -47,10 +47,10 @@ class: center, middle, inverse
 - Editer le code (y.c. compiler)
 - Collaborer
 - Tester
+- Valider
 - Construire
-- Editer
 - Livrer
-- Déployer
+- Installer
 ---
 
 class: center, middle
@@ -134,13 +134,61 @@ Automatiser un maximum de test afin de
 
 **Solution**
 
-- Junit
-- Maven
-- Spring
-- Jenkins
-- GWT   
+- Junit : Permet de définir simplement des classes dediées aux tests
+- Maven : Permet de différentier dans le code les parties dédiées aux tests 
+- Spring : Permet de définir différents environnements pour chaque test
+- Jenkins : Permet d'exécuter les tests en continu et/ou avant les livraisons
+- GWT : Permet de faire que les tests porte également sur la partie cliente   
 ---
 
+## Valider
+**Objectif** 
+
+Vérifier que le code vérifie un certain nombre de règles et de bonnes pratiques (ex: duplication de code)
+
+**Solution**
+
+- Sonar : 
+
+  - Permet d'appliquer les règles usuelles Java sur les projets
+  - Permet de définir des règles spécifiques à un projet ou à une équipe
+
+- Jenkins : Permet d'exécuter automatiquement des analyses Sonar
+---
+
+
+## Construire
+**Objectif** 
+
+Pouvoir construire les livrables de manière fiable et indépendante du poste du développeur. 
+La construction doit pouvoir cibler plusieurs environnements distincts.
+
+**Solution**
+
+- Maven : Permet de définir des constructions complexes de livrables
+- Jenkins : Permet d'effectuer les constructions sur commande ou en cas de modification sur des branches du serveur de code
+---
+
+## Livrer
+**Objectif** 
+
+Mettre à disposition les produits une fois construits.
+
+**Solution**
+
+- Dépôts Maven : Les dépôts Maven permettent de classer les différents livrables selon leurs versions et de les mettre à disposition d'autres build maven ou via une interface web 
+- Jenkins : Permet de déposer les livrables sur un dépôt Maven après construction
+---
+
+## Installer
+**Objectif** 
+
+Simplifier la mise en place des applications dans leur environnement de production
+
+**Solution**
+
+Pour les applications web JEE, la norme *.war* permet de simplifier l'installation/réinstallation d'une application sur un serveur JEE.
+Maven permet d'installer automatiquement un composant d'un dépôt Maven sur un serveur Tomcat.
 
     </textarea>
    <!--  <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js"> -->
