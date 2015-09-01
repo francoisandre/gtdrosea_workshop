@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Utilisation de Git</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      
+      .left-column {
+        color: #777;
+        width: 20%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 75%;
+        float: right;
+        padding-top: 1
+        }
+        
+        .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+      
+      code {
+background: #e7e8e2;
+border-radius: 5px;
+padding: 3px;
+}
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle
+
+# Travail collaboratif efficace avec Git
+
+---
+## Agenda
+
+1. Introduction
+2. Git et les autres système de gestion de source
+2. Deep-dive
+3. ...
+
+---
+
+class: center, middle, inverse
+## Introduction 
+
+---
+template: inverse
+
+.left-column[
+## Pourquoi un SCM ?
+### - Pour soi
+]
+.right-column[
+
+  - Il est utile de pouvoir retrouver les **différentes étapes** de son travail.    
+  - Il est utile d'avoir **plusieurs versions** de son travail en même temps
+]
+
+---
+.left-column[
+## Pourquoi un SCM ?
+  ### - Pour soi
+  ### - Pour son équipe
+]
+.right-column[
+
+  - Toute production - code ou autre - fait partie du patrimoine de nos équipes et doit être **conservée** de manière pérenne (c.a.d avec des **pratiques connues**).    
+]
+
+---
+.left-column[
+  ## Pourquoi un SCM ?
+  ### - Pour soi
+  ### - Pour son équipe
+  ### - Pour nos équipes
+]
+.right-column[
+  - Il est **nécessaire** d'outiller et organiser le travail collaboratif 
+]
+---
+## Pourquoi Git ?
+
+- Il existe beaucoup de SCM : CVS, SVN, **Git**, Mercurial,... 
+- En général chaque nouvelle génération d'outil rend la précédente obsolète
+
+Git apporte beaucoup de souplesse :
+  - Le travail **déconnecté**
+  - La possibilité de travailler facilement sur **plusieurs versions** de l'application (les *branches*)
+    - La version de production
+    - La version en développement
+  - La possibilité de **travailler à plusieurs** :
+    - avec un serveur central
+    - avec plusieurs serveurs centraux
+    - directement entre plusieurs développeurs 
+
+Git est 
+  - **rapide**
+  - **agnostique** : disponible sur tous les OS,
+  - **social** : http://github.com 
+  - **efficace** : gitflow
+ 
+
+
+---
+class: center, middle, inverse
+## Remarques
+
+---
+## IDE Utilisé
+
+  - Par défaut Git s'utilise avec l'invite de commande
+  
+  - Les principaux IDE (Eclipse, Netbeans, IntelliJ ...) masquent ces commandes en les intégrand à leur interface 
+
+  - Les exercices proposés utilisent gratuit l'IDE PyCharm (Community Edition) <img src="./images/pyCharmLogo.png" width="24"/> disponible ici : https://www.jetbrains.com/pycharm/.
+
+
+---
+## Serveur Git
+
+- Plusieurs serveurs Git en ligne et gratuits existent ([GitHub](https://github.com/), [BitBucket](https://bitbucket.org/),...)
+
+- Il existe également des serveurs à installer localement ([GitLab C.E.](https://about.gitlab.com/)) 
+- **Sourcesup**
+
+  Renater propose gratuitement une forge destinée aux EPST, **[Sourcesup](http://sourcesup.renater.fr)** offrant les fonctionnalités suivantes :
+ 
+   + Dépôts publics/privés (Authentification basée sur Sibboleth)
+   + Git
+   + Gestionnaire d'anomalies (Mantis BT) 
+   + Wiki
+   + Moteur d'intégration continue (Jenkins)
+ 
+ Dans le cadre du *pôle Atmosphère* nous préconisons son utilisation pour les différents projets. C'est par exemple le cas de l'ensemble des projets du SEDOO (Observatoire Midi Pyrénées)
+---
+class: center, middle, inverse
+## Quelques notions préliminaires
+---
+## Dépôt local et répertoire de travail
+
+Pour chaque projet, Git utilise un répertoire (.git) dans lequel il va mettre l'ensemble des données/métadonnées permettant de retracer l'histoire du projet. 
+
+C'est le **dépôt local** du projet.
+
+Git va extraire de ce dépot une version du projet dans un répertoire afin de permettre l'édition des fichiers.
+
+C'est le **répertoire de travail** du projet.
+
+(En général le dépot local est un sous répertoire du projet)
+
+---
+## Instantané
+
+Chaque fois qu'un projet est *validé*, Git stocke dans le dépôt local, une image de tous les fichers composants alors le projet. 
+
+On parle d'**instantané**.
+
+.center[<img src="./images/instantane.png" width="80%"/>]
+
+---
+## Échanges locaux
+Avec Git, le cycle classique est le suivant : 
+
+ 1. On ajoute/supprime/modifie des fichiers dans l'espace de travail
+ 2. On groupe l'ensemble de ces modifications (on parle d'*indexation*)  
+ 3. On valide (*commit*) ces modifications dans le dépôt local en y associant un commentaire (exemple: correction de l'anomalie #145) 
+
+.center[<img src="./images/echangesLocaux.png" width="50%"/>]
+
+
+---
+class: center, middle, inverse
+## Manipulations locales
+---
+## Ajouter Git à un projet
+Le projet peut déjà exister ou n'être qu'un répertoire vide.
+
+
++  Dans le menu `VCS`, sélectionnez `Enable Version Control Integration`
+
+.center[<img src="./images/init1.png" width="60%"/>]
+
+
++  Dans la fenêtre popup, sélectionnez `Git` et cliquez sur `Ok`
+
+.center[<img src="./images/init2.png" width="50%"/>]
+
++  A l'issue de la configuration, la barre de statut devrait afficher `Git:master`
+
+.center[<img src="./images/init3.png" width="30%"/>]
+
+---
+
+## Connaitre les fichiers non validés
+
+Il est utile de pouvoir facilement voir l'ensemble des fichiers ajoutés/supprimés/modifiés et non ajoutés au dépôt local.
+
+
++  Dans la barre de statut, faites apparaître le menu `Version Control` et cliquez dessus
+
+.center[<img src="./images/status1.png" width="20%"/>] 
+
++  Cliquez sur `Local Changes` pour faire apparaître la liste des fichiers non validés
+
+.center[<img src="./images/status2.png" width="50%"/>] 
+
+---
+
+## Ajouter des fichiers au dépot local 
+
++ Dans le projet, créez deux fichiers, *fichier1.txt* et *fichier2.txt* avec comme contenu *Contenu du fichier X*
+
+PyCharm vous propose par défaut que ces fichiers soient gérés par Git. Déclinez l'offre en cliquant sur `No`
+
+.center[<img src="./images/add2.png" width="20%"/>]
+
++ Vous pouvez vérifier dans `Local Changes` que les deux fichiers apparaissent dans la section *Unversioned Files*
+
++ Sélectionnez les fichiers (dans l'arboresence du projet), Dans le menu contextuel cliquez sur `Git` puis sur `Add`.
+
+.center[<img src="./images/add1.png" width="35%"/>]
+
+---
+
+## Ajouter des fichiers au dépot local 
+
+Les fichiers sont désormais *indexés* et vont pouvoir être proposés au prochain *Commit*
+
++ Cliquez sur l'icône de commit
+
+.center[<img src="./images/add3.png" width="35%"/>]
+
++ La fenêtre qui apparaît indique les fichiers qui vont faire partie du commit. Vous pouvez en désélectionner.
+
+.center[<img src="./images/add4.png" width="25%"/>]
+
++ Indiquez un commentaire ainsi que le nom de l'auteur et cliquez sur `Commit`  
+
+---
+
+## Ignorer des fichiers
+
+Certains fichiers ne doivent pas être commités :
+
+ + Fichier spécifiques à un IDE ou à un poste de développement
+ + Fichiers générés (.java, .jar)
+ + ...
+ 
+PyCharm propose un mécanisme propriétaire pour ignorer les fichiers. Nous allons utiliser le **mécanisme standard de Git** qui repose sur un fichier nommé *.gitignore*
+
+ + Créez un fichier *.gitignore* à la racine du projet
+ 
+ + Indiquez comme contenu */.idea*.Cela signifie que tous les fichiers du répertoire *.idea* seront ignorés.
+ 
+ + La liste *Unversioned Files* n'affiche plus les fichiers du répertoire *.idea*
+ 
+ 
+.center[<img src="./images/ignore1.png" width="25%"/>]
+ 
+---
+
+## Ignorer des fichiers
+
+### Remarques
+
++ Le fichier .gitignore est un fichier ordinaire : il doit être ajouté au dépôt et commité.
++ La syntaxe du fichier .gitignore est détaillée ici : http://git-scm.com/docs/gitignore
++ Des exemples de fichiers *.gitignore* adaptés à chaque language/framework sont disponibles : https://github.com/github/gitignore
+
+---
+
+## Supprimer un fichier
+
+---
+
+## Renommer un fichier
+--- 
+
+
+## Ajouter des étiquettes
+
+---
+
+## Consulter l'historique
+
+---
+
+## Remplacer un fichier par une version plus ancienne
+
+---
+
+## Repartir sur un commit plus ancien  
+
+---
+class: center, middle, inverse
+## Les branches
+---
+
+class: center, middle, inverse
+## Conclusion 
+---
+## Pour aller plus loin : ** Pro Git** (par Scott Chacon)
+
+ - Ouvrage de référence 
+ - Disponible gratuitement en français : https://git-scm.com/book/fr/v2 (différents formats: pdf, html, epub...)
+---
+
+
+    </textarea>
+   <!--  <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js"> -->
+   <script src="./offline/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
