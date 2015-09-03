@@ -40,6 +40,44 @@
         line-height: 0.8em;
       }
       
+     .box.happy .label {
+  background-color: black;
+}
+
+ .box.happy {
+  padding-top: 15px;
+height: 1px;
+border-bottom: solid 1px black;
+}
+
+._50pct {
+	width : 50%;
+}
+
+.label {
+  padding: 3px 5px 4px;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  white-space: nowrap;
+  font-size: 0.75em;
+  left: 10px;
+  top: -25px;
+  position: relative;
+}
+
+div.box p, div.box ul {
+  position: relative;
+  top: -20px;
+}
+      .gitCommands * {
+font-size: small !important;
+}
+
+  .gitCommand pre {
+margin-top: 0px;
+}
+      
       code {
 background: #e7e8e2;
 border-radius: 5px;
@@ -137,6 +175,21 @@ class: center, middle, inverse
 
   - Les exercices proposés utilisent gratuit l'IDE PyCharm (Community Edition) <img src="./images/pyCharmLogo.png" width="24"/> disponible ici : https://www.jetbrains.com/pycharm/.
 
+  - Toutefois, afin de permettre le passage vers d'autres IDE et l'appronfondissement de l'outil, les commandes sont indiquées en marge des exercices
+  
+<div class="100pct" >
+<div class="happy box">
+.label[Mode commande]
+</div>
+ .gitCommand[
+```terminal
+$ git status
+$ git add ...
+```
+]
+</div>
+
+ - L'onglet `Console` de PyCharm permet de voir les commandes effectuées de manière sous-jacente.
 
 ---
 ## Serveur Git
@@ -212,6 +265,20 @@ Le projet peut déjà exister ou n'être qu'un répertoire vide.
 
 .center[<img src="./images/init3.png" width="30%"/>]
 
+
+---
+## Ajouter Git à un projet
+
+<div class="100pct" >
+<div class="happy box">
+.label[Mode commande]
+</div>
+ .gitCommand[
+```terminal
+$ git init
+```
+]
+</div>
 ---
 
 ## Connaitre les fichiers non validés
@@ -228,8 +295,41 @@ Il est utile de pouvoir facilement voir l'ensemble des fichiers ajoutés/supprim
 .center[<img src="./images/status2.png" width="50%"/>] 
 
 ---
+## Connaitre les fichiers non validés
 
-## Ajouter des fichiers au dépot local 
+<div class="100pct" >
+<div class="happy box">
+.label[Mode commande]
+</div>
+ .gitCommand[
+```terminal
+$ git status
+
+# On branch master
+# Changes not staged for commit:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#	modified:   fichier1.txt
+#	modified:   fichier2.txt
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#	.idea/
+no changes added to commit (use "git add" and/or "git commit -a")
+
+```
+]
+</div>
+
+- **Rappel :** L'onglet `Console` de PyCharm permet de voir les commandes effectuées de manière sous-jacente.
+
+.center[<img src="./images/status3.png" width="50%"/>] 
+
+---
+
+## Ajouter des fichiers au dépot local (commit)
 
 + Dans le projet, créez deux fichiers, *fichier1.txt* et *fichier2.txt* avec comme contenu *Contenu du fichier X*
 
@@ -258,6 +358,26 @@ Les fichiers sont désormais *indexés* et vont pouvoir être proposés au proch
 .center[<img src="./images/add4.png" width="25%"/>]
 
 + Indiquez un commentaire ainsi que le nom de l'auteur et cliquez sur `Commit`  
+
+---
+
+## Ajouter des fichiers au dépot local
+
+<div class="100pct" >
+<div class="happy box">
+.label[Mode commande]
+</div>
+ .gitCommand[
+```terminal
+$ git add monfichier
+$ git commit
+$ git commit -m "mon commentaire" (permet d indiquer directement un commentaire)
+$ git commit -a -m "mon commentaire" (permet de passer la phase d indexation et prends en compte tous les fichiers)
+
+```
+]
+</div>
+
 
 ---
 
@@ -294,11 +414,46 @@ PyCharm propose un mécanisme propriétaire pour ignorer les fichiers. Nous allo
 
 ## Supprimer un fichier
 
+Lorsque que l'on supprime un fichier - via l'IDE par exemple - il faut répercuter cette suppression au niveau du dépôt local si celui-ci y était déjà présent. Cette opération est similaire à un commit.
+
+ + Créez un fichier *fichier3.txt* avec comme contenu *Contenu du fichier 3*. Ajoutez ce fichier au dépot local
+ 
+ + Supprimez le fichier dans l'arboresence du projet. 
+ 
+ + Cliquez sur le bouton *Commit*
+ 
+ .center[<img src="./images/rm1.png" width="10%"/>]
+ 
+---
+
+## Supprimer un fichier
+ 
+ + Remarquez que cette fois-ci, la boite de dialogue indique que le commit va concerner une suppression
+  
+ .center[<img src="./images/rm2.png" width="35%"/>]
+
+ + Commitez
+ 
+<div class="100pct" >
+<div class="happy box">
+.label[Mode commande]
+</div>
+ .gitCommand[
+```terminal
+$ git rm monfichier
+$ git rm --cached monfichier 
+(dans ce cas le fichier est supprimé du dépôt mais pas de l espace de travail)
+
+```
+]
+</div>
+
 ---
 
 ## Renommer un fichier
---- 
 
+
+---
 
 ## Ajouter des étiquettes
 
@@ -323,6 +478,9 @@ Par exemple, cela permet d'associer un numéro de version à un état du projet.
 class: center, middle, inverse
 ## Les branches
 ---
+
+Comparatif Supériorité SVN
+
 
 class: center, middle, inverse
 ## Conclusion 
