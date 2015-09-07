@@ -519,7 +519,7 @@ Par exemple, cela permet d'associer un numéro de version à un état du projet.
 
 ---
 class: center, middle, inverse
-## Les branches
+## Les branches - Partie 1 : La théorie
 ---
 
 ## Pourquoi avoir besoin de branches ?
@@ -568,7 +568,7 @@ Toutefois, généralement, l'implémentation proposée fait que le concept est r
    
  - Branches transitoires
  
-  - Feature : pour toute nouvelle fonctionalité
+  - Feature : pour toute nouvelle fonctionalité ou correction de bug
   - Hotfix: correction de bug en production
   - Release : livraison
 
@@ -632,7 +632,7 @@ Toutefois, généralement, l'implémentation proposée fait que le concept est r
 ### Cas 1 : La branche qui va recevoir la fusion est un ancêtre de la branche à fusionner
  
 Ce cas est très simple, la fusion revient simplement à déplacer le curseur de la branche recevante sur l'instantanné pointé par la branche à fusionner.
-.center[ <img src="./images/branching_manip5.png" width="33%"/>]
+.center[ <img src="./images/branching_manip5b.png" width="33%"/>]
 .small[.center[**Avant fusion**]]
 .center[<img src="./images/branching_manip6.png" width="33%"/>]
 .small[.center[**Après fusion**]]
@@ -649,6 +649,9 @@ Ce cas est potentiellement compliqué car certains fichiers ont pu être modifi�
 .center[<img src="./images/branching_manip8.png" width="33%"/>]
 .small[.center[**Après fusion**]]
 
+---
+class: center, middle, inverse
+## Les branches - Partie 2 : La pratique
 ---
 
 class: center, middle, inverse
