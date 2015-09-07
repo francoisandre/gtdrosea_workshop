@@ -83,6 +83,10 @@ background: #e7e8e2;
 border-radius: 5px;
 padding: 3px;
 }
+
+.small {
+ font-size: x-small;
+}
     </style>
   </head>
   <body>
@@ -452,6 +456,45 @@ $ git rm --cached monfichier
 
 ## Renommer un fichier
 
+Répercuter le changement de nom d'un fichier présent au dépôt est un action similaire à la suppression
+
+ + Renommez le fichier *fichier2.txt* en *fichier2b.txt* (via le menu contextuel)
+  
+ .center[<img src="./images/renamming1.png" width="45%"/>]
+
+ + L'onglet `Local Changes` indique que le changement est un changement de nom
+  
+ .center[<img src="./images/renamming2.png" width="31%"/>]
+
+ + Cliquez sur le bouton *Commit*
+ 
+ .center[<img src="./images/renamming3.png" width="7%"/>]
+
+---
+
+
+## Renommer un fichier
+ 
+ + Remarquez que cette fois-ci, la boite de dialogue indique que le commit va concerner un changement de nom
+  
+ .center[<img src="./images/renamming4.png" width="35%"/>]
+
+ + Commitez
+ 
+<div class="100pct" >
+<div class="happy box">
+.label[Mode commande]
+</div>
+ .gitCommand[
+```terminal
+De manière sous-jacente, le renommage correspond à la succession des commandes :
+$ git rm monfichier
+$ git add monnouveaufichier
+$ git commit
+
+```
+]
+</div>
 
 ---
 
@@ -479,8 +522,134 @@ class: center, middle, inverse
 ## Les branches
 ---
 
-Comparatif Supériorité SVN
+## Pourquoi avoir besoin de branches ?
 
+Il peut être nécessaire de travailler simultanément sur plusieurs versions du code:
+
+ + version en production
+ + version en développement
+ + ...
+
+Le concept de **branche** répond à ce besoin et les différents SCM le mettent en oeuvre. 
+
+Toutefois, généralement, l'implémentation proposée fait que le concept est rarement utilisé.
+
+*Exemple*: En SVN, les branches sont gérées sur le serveur et le temps de création des branches puis de bascule d'une branche à l'autre est rédhibitoire
+
+** Avec Git, les branches sont très simples à gérer et le passage entre deux branches est quasi instantanné.**
+
+
+---
+
+## GitFlow 
+
+
+
+- En 2010, Vincent Driessen publie un article intitulé *A successful Git branching model* (http://nvie.com/posts/a-successful-git-branching-model/) proposant une méthodologie efficace pour gérer les projets avec Git grâce aux branches.
+
+- Cette méthodologie a été rapidement adoptée par beaucoup de grands acteurs du développement, notamment dans le cadre de méthodologie agile.
+
+---
+
+## GitFlow
+
+.center[<img src="./images/gitflow1.png" width="53%"/>]
+
+---
+
+## GitFlow
+
+### Principaux points
+
+ - Branches pérennes
+ 
+  - *master* : branche correspondant au code en production
+  - *develop* : branche correspondant au code en développement
+   
+ - Branches transitoires
+ 
+  - Feature : pour toute nouvelle fonctionalité
+  - Hotfix: correction de bug en production
+  - Release : livraison
+
+---
+## GitFlow
+
+### Remarque
+
+- Une surcouche à Git en mode commande est également disponible mettant en oeuvre de manière explicite les principes de GitFlow. Toutefois, elle n'est pas indispensable.
+
+.center[<img src="./images/gitflow2.png" width="53%"/>]
+
+.small[.center[http://danielkummer.github.io/git-flow-cheatsheet/index.fr_FR.html]]
+
+---
+## Comment Git gère les branches ?
+
++ Chaque *commit* entraîne la création d'un instantané identifié par un numéro unique.
+
+.center[<img src="./images/branching_manip1.png" width="53%"/>]
+
++ Avec Git, une branche est simplement un pointeur vers un instantanné
+
++ Un pointeur spécial, *HEAD*, indique la branche courante. 
+
+.center[<img src="./images/branching_manip2.png" width="53%"/>]
+
+---
+
+## Comment Git gère les branches ?
+
++ Créer une nouvelle branche revient donc à ajouter un nouveau pointeur sur l'instantanné courant.
+
+.center[<img src="./images/branching_manip3.png" width="33%"/>]
+
++ Changer de branche consiste à basculer vers l'instantanné pointé par la branche et à mettre à jour le pointeur *HEAD*.
+
+.center[<img src="./images/branching_manip4.png" width="33%"/>]
+
+---
+
+## Comment Git gère les branches ?
+
++ Lors des *commits* suivants seul le pointeur de la branche actuelle va se déplacer.
+
+.center[<img src="./images/branching_manip5.png" width="53%"/>]
+
+---
+
+## Les fusions
+
+ + Deux cas se présentent en général 
+ 
+   1. La branche qui va recevoir la fusion est un ancêtre de la branche à fusionner
+   2. La branche qui va recevoir la fusion n'est pas un ancêtre de la branche à fusionner  
+
+---
+
+## Les fusions
+
+### Cas 1 : La branche qui va recevoir la fusion est un ancêtre de la branche à fusionner
+ 
+Ce cas est très simple, la fusion revient simplement à déplacer le curseur de la branche recevante sur l'instantanné pointé par la branche à fusionner.
+.center[ <img src="./images/branching_manip5.png" width="33%"/>]
+.small[.center[**Avant fusion**]]
+.center[<img src="./images/branching_manip6.png" width="33%"/>]
+.small[.center[**Après fusion**]]
+
+---
+
+## Les fusions
+
+### Cas 2 : La branche qui va recevoir la fusion n'est pas un ancêtre de la branche à fusionner
+ 
+Ce cas est potentiellement compliqué car certains fichiers ont pu être modifiés dans les deux branches, il va falloir fusionner ces fichiers via un nouvel instantanné.
+.center[ <img src="./images/branching_manip7.png" width="27%"/>]
+.small[.center[**Avant fusion**]]
+.center[<img src="./images/branching_manip8.png" width="33%"/>]
+.small[.center[**Après fusion**]]
+
+---
 
 class: center, middle, inverse
 ## Conclusion 
