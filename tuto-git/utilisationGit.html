@@ -497,25 +497,159 @@ $ git commit
 </div>
 
 ---
+## Consulter l'historique
 
-## Ajouter des étiquettes
+L'onglet `Log` permet de consulter l'historique du projet :
+
+ + les différents *commits* (avec leur messages)
+ + les différentes branches
+
+.center[<img src="./images/logging1.png" width="100%"/>]
+
+<div class="100pct" >
+<div class="happy box">
+.label[Mode commande]
+</div>
+ .gitCommand[
+```terminal
+
+$ git log
+$ git log --pretty=oneline
+$ git log --pretty=short
+$ git log --since="2 weeks ago"
+
+```
+]
+</div>
+---
+
+## Consulter l'historique
+ 
+Pour chaque *commit*, les différents fichiers concernés sont affichés sur le panneau de droite.
+
+Dans le menu contextuel, `Show Diff with local` permet de voir les différences par rapport au répertoire de travail
+
+.center[<img src="./images/logging2.png" width="35%"/>]
+
+.center[<img src="./images/logging3.png" width="100%"/>]
+
+---
+
+## Consulter l'historique
+ 
+Il est également possible de connaitre l'historique d'un fichier unique
+
+.center[<img src="./images/logging4.png" width="35%"/>]
+
+.center[<img src="./images/logging5.png" width="75%"/>]
+
+
+---
+## Consulter l'historique
+
+<div class="100pct" >
+<div class="happy box">
+.label[Mode commande]
+</div>
+ .gitCommand[
+```terminal
+
+$ git log -p --chemin/vers/le/fichier
+
+```
+]
+</div>
+
+---
+## Ajouter des étiquettes (tag)
 
 Une étiquette permet de donner un nom sur un instantanné afin d'être facilement identifiable par la suite.
 
 Par exemple, cela permet d'associer un numéro de version à un état du projet. 
 
-[A compléter]
++ Dans la vue `Log`, sélectionnez le *commit* à *tagger* et faîtes apparaître le menu contextuel
+
++ Sélectionnez la commande `New Tag...`
+
+.center[<img src="./images/tagging1.png" width="75%"/>]
+
 ---
+## Ajouter des étiquettes (tag)
 
-## Consulter l'historique
++ Indiquez le nom de l'étiquette et validez
 
+.center[<img src="./images/tagging2.png" width="35%"/>]   
+
+ + L'étiquette est visible dans la vue `Log`
+
+.center[<img src="./images/tagging3.png" width="35%"/>]
+
+ <div class="100pct" >
+<div class="happy box">
+.label[Mode commande]
+</div>
+ .gitCommand[
+```terminal
+
+$ git tag -a v1.0 (ajout de l etiquette)
+$ git tag -a v1.0 -m 'mon commentaire'
+$ git tag -d v1.0 (suppression de l etiquette)
+
+```
+]
+</div>
 ---
 
 ## Remplacer un fichier par une version plus ancienne
 
----
+La commande `git checkout` permet de changer de branche (cf. infra).
 
-## Repartir sur un commit plus ancien  
+Elle peut toutefois être utilisée pour restaurer un fichier dans une version plus ancienne. Par exemple *fichier3.txt*.
+
+ + Identifiez l'identifiant du commit contenant la version de *fichier3.txt* souhaitée via la vue `Log`. Dans notre cas **479b5c7**.
+ 
+ .center[<img src="./images/restoring1.png" width="35%"/>]  
+ 
+ + Ouvrir un terminal dans le répertoire racine du projet
+
+---
+## Remplacer un fichier par une version plus ancienne
+ 
+ + Lancez la commande *git checkout **479b5c7** fichier3.txt*
+ 
+ + Le fichier a été restauré et est présent dans l'espace de travail comme un nouveau fichier.
+ 
+ .center[<img src="./images/restoring2.png" width="55%"/>] 
+---
+## Repartir d'un commit plus ancien
+
+Il  peut être utile - mais **dangereux** - de repartir d'un *commit* plus ancien et de supprimer les *commits* survenus depuis.
+
+ + Dans la fenêtre `Log`, sélectionnez le *commit* à partir duquel vous voulez repartir.
+ 
+ + Dans le menu contextuel, sélectionnez la commande `Reset current branche to here...`
+ 
+  .center[<img src="./images/reseting1.png" width="55%"/>] 
+
+---
+## Repartir d'un commit plus ancien
+  
+ + Dans la boite de dialogue choisissez l'option adaptée à votre besoin et validez en cliquant sur `Reset`.
+ 
+  .center[<img src="./images/reseting2.png" width="45%"/>] 
+ 
+<div class="100pct" >
+<div class="happy box">
+.label[Mode commande]
+</div>
+ .gitCommand[
+```terminal
+$ git reset ...
+```
+]
+</div>
+
+Il est peut-être plus **prudent** de créer une branche à partir du *commit* identifié.
 
 ---
 class: center, middle, inverse
@@ -662,6 +796,8 @@ class: center, middle, inverse
  - Ouvrage de référence 
  - Disponible gratuitement en français : https://git-scm.com/book/fr/v2 (différents formats: pdf, html, epub...)
 ---
+class: center, middle, inverse
+## Les branches - Questions
 
 
     </textarea>
