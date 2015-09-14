@@ -602,7 +602,7 @@ $ git tag -d v1.0 (suppression de l etiquette)
 
 ## Remplacer un fichier par une version plus ancienne
 
-La commande `git checkout` permet de changer de branche (cf. infra).
+La commande `git checkout` permet de naviguer entre les branches et les commits (cf. infra).
 
 Elle peut toutefois être utilisée pour restaurer un fichier dans une version plus ancienne. Par exemple *fichier3.txt*.
 
@@ -786,8 +786,75 @@ Ce cas est potentiellement compliqué car certains fichiers ont pu être modifi�
 ---
 class: center, middle, inverse
 ## Les branches - Partie 2 : La pratique
----
 
+
+---
+## Créer une branche
+
+La branche courante est indiquée à droite de la barre de statut.
+
+.center[<img src="./images/practicalBranching1.png" width="33%"/>]
+
+Par défaut, la 1ère branche s'appelle *master*.
+
+
+Pour créer une nouvelle branche et basculer dessus :
+
++ Cliquez sur la branche actuelle afin de faire apparaitre le menu déroulant et sélectionnez l'action `New Branch`
+
+.center[<img src="./images/practicalBranching2.png" width="33%"/>]
+
+---
+## Créer une branche
+
++ Dans la boite de dialogue, indiquez le nom de la nouvelle branche : *develop*
+ 
+.center[<img src="./images/practicalBranching3.png" width="33%"/>] 
+
++ La vue `Log` affiche les deux branches au niveau du dernier *commit*  
+
+.center[<img src="./images/practicalBranching4.png" width="33%"/>] 
+
+---
+## Créer une branche
+
+La barre de statut indique désormais *develop* comme branche actuelle.
+
+.center[<img src="./images/practicalBranching5.png" width="33%"/>]
+
+Créez de la même manière une branche nommée *feature_MaFonction*.
+
+<div class="100pct" >
+<div class="happy box">
+.label[Mode commande]
+</div>
+ .gitCommand[
+```terminal
+$ git checkout -b mabranche (si la branche n existe pas elle est créée, 
+sinon il s agit d une simple bascule)
+```
+]
+</div>
+
+---
+## Basculer d'une branche à l'autre
+
++ Le menu déroulant des branches indique les différentes branches présentes
+
++ Pour basculer d'une branche à l'autre, il suffit de chosir la branche cible dans le menu et de cliquer sur `Checkout`
+
+.center[<img src="./images/practicalBranching6.png" width="33%"/>]
+
+La bascule est très rapide car totalement locale.
+
+---
+## Basculer d'une branche à l'autre
+
+Stash !!!
+
+Le fichier fichier 3.txt a suivi
+
+---
 class: center, middle, inverse
 ## Conclusion 
 ---
@@ -797,7 +864,7 @@ class: center, middle, inverse
  - Disponible gratuitement en français : https://git-scm.com/book/fr/v2 (différents formats: pdf, html, epub...)
 ---
 class: center, middle, inverse
-## Les branches - Questions
+## Merci.
 
 
     </textarea>
