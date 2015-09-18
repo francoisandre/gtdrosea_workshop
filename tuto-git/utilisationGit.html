@@ -822,7 +822,7 @@ La barre de statut indique désormais *develop* comme branche actuelle.
 
 .center[<img src="./images/practicalBranching5.png" width="33%"/>]
 
-Créez de la même manière une branche nommée *feature_MaFonction*.
+Créez de la même manière une branche nommée *feature_MaFonction* et basculez dessus.
 
 <div class="100pct" >
 <div class="happy box">
@@ -830,11 +830,15 @@ Créez de la même manière une branche nommée *feature_MaFonction*.
 </div>
  .gitCommand[
 ```terminal
+$ git branch mabranche (creation d une branche)
+$ git checkout mabranche (bascule sur une branche)
 $ git checkout -b mabranche (si la branche n existe pas elle est créée, 
 sinon il s agit d une simple bascule)
+$ git branch -m monnouveaunom (renomme la branche courante)
 ```
 ]
 </div>
+
 
 ---
 ## Basculer d'une branche à l'autre
@@ -850,18 +854,109 @@ La bascule est très rapide car totalement locale.
 ---
 ## Basculer d'une branche à l'autre
 
-Stash !!!
+Remarque : le fichier *fichier3.txt* est présent dans la nouvelle branche.
 
-Le fichier fichier 3.txt a suivi
+---
+## Fusion simple (Fast Forward)
 
++ Dans fichier1.txt ajoutez une nouvelle ligne (*Ligne ajoutée dans MaFonction*)
++ Ajoutez un fichier *fichier4.txt* avec comme contenu la ligne *Contenu du fichier4.txt*
++ Commitez le fichier 1 et le fichier 4 avec un commentaire identifié (*modification pour MaFonction*)
+
+.center[<img src="./images/practicalBranching7.png" width="33%"/>]
+
++ Basculez sur la branche *develop* (le fichier *fichier1.txt* est affiché dans son état antérieur, le fichier *fichier4.txt* absent)
++ Dans le menu des branches, sélectionnez la branche *feature_MaFonction* et cliquez sur *merge*
+
+.center[<img src="./images/practicalBranching8.png" width="33%"/>]
+
+---
+## Fusion simple (Fast Forward)
+
+ + Le fichier 1 modifié et le fichier 4 sont bien présents
+ + En fait Git n'a fait que déplacer le pointeur de la branche *develop* sur la branche *feature_MaFonction*
+ 
+ .center[<img src="./images/practicalBranching9.png" width="43%"/>]
+ 
+ <div class="100pct" >
+<div class="happy box">
+.label[Mode commande]
+</div>
+ .gitCommand[
+```terminal
+$ git merge maBrancheAFusionner
+$ git merge --no-ff maBrancheAFusionner (fusion avec un commit de merge)
+```
+]
+</div>
+---
+## Fusion avec conflit 
+
+ + Basculez sur la branche *master*
+ + Créez une branche *Hotfix_1* et basculez sur elle
+ .center[<img src="./images/practicalBranching10.png" width="43%"/>] 
+
+ + Dans le fichier *fichier1.txt* ajouter une ligne *Correction hotfix 1*
+ + Commitez ce fichier
+ + Revenez sur *master* 
+ + Mergez la branche *Hotfix_1*
+ + Basculez sur *develop*
+ 
+  .center[<img src="./images/practicalBranching11.png" width="43%"/>] 
+
+---
+
+## Fusion avec conflit 
+
+ + Supprimez le fichier *fichier3.txt*
+ + Demandez la fusion avec la branche *Hotfix_1*
+ + Il y a dans ce cas, un conflit avec les deux versions de *fichier1.txt*
+.center[<img src="./images/practicalBranching12.png" width="43%"/>] 
+ + Cliquez sur `Merge`. Dans la boite de dialogue, fusionnez manuellement les deux fichiers
+ .center[<img src="./images/practicalBranching13.png" width="43%"/>] 
+ + Validez en cliquant sur `Apply`.
+---
+
+## Fusion avec conflit 
+
+ + La situation est alors la suivante :
+ .center[<img src="./images/practicalBranching14.png" width="43%"/>] 
+---
+## Suppression de branche
+
+Les branches *Hotfix_1* et *feature_MaFonction* sont des branches temporaires. Elles peuvent être supprimées.
+
+ + Dans le menu des branches, sélectionnez chacune de ces deux branches et cliquez sur `Delete`
+ .center[<img src="./images/practicalBranching15.png" width="33%"/>] 
+ 
+Remarque: Git vous avertit si vous tentez de supprimer une branche n'ayant jamais été fusionnée
+ 
+<div class="100pct" >
+<div class="happy box">
+.label[Mode commande]
+</div>
+ .gitCommand[
+```terminal
+$ git branch -d maBrancheASupprimer
+$ git branch -D maBrancheASupprimer (pour supprimer une branche non fusionnée)
+```
+]
+</div>
+ 
 ---
 class: center, middle, inverse
 ## Conclusion 
 ---
-## Pour aller plus loin : ** Pro Git** (par Scott Chacon)
+## Pour aller plus loin : 
+
+** Pro Git** (par Scott Chacon)
 
  - Ouvrage de référence 
  - Disponible gratuitement en français : https://git-scm.com/book/fr/v2 (différents formats: pdf, html, epub...)
+
+** Tutotiel(s) **
+ 
+ - http://www.grafikart.fr/formations/git
 ---
 class: center, middle, inverse
 ## Merci.
