@@ -921,6 +921,8 @@ $ git merge --no-ff maBrancheAFusionner (fusion avec un commit de merge)
 
  + La situation est alors la suivante :
  .center[<img src="./images/practicalBranching14.png" width="43%"/>] 
+
+Notez la présence du *commit* de fusion.
 ---
 ## Suppression de branche
 
@@ -945,6 +947,65 @@ $ git branch -D maBrancheASupprimer (pour supprimer une branche non fusionnée)
  
 ---
 class: center, middle, inverse
+## Échanger avec d'autres développeurs : les dépôts distants
+---
+ 
+## Les dépôts distants : remote
+
+Objectifs
+
++ Les dépots vont permettre aux développeurs de partager leur travail.
++ Ils peuvent aussi servir de dépôt de référence pour l'intégration continue
+
+Git offre beaucoup de souplesse dans la gestion des dépôts distants :
+
+ + Nature (cloud, disque partagé, clé usb...)
+ + Protocole (SSH, Git, HTTPS...)
+ + Nombre (utilisation de plusieurs dépôts...)
+ + Structure (communication directe entre développeur, serveur central ...)
+ 
+ 
+ Dans notre exercice nous allons créer un dépôt distant ...local au poste de travail.
+ 
+---
+## Création du dépôt distant
+
++ Dans un terminal créez un répertoire *monDepotGit.git*
++ Entrez dans le répertoire
++ tapez la commande *git init --bare*
+
+ .center[<img src="./images/remoting1.png" width="63%"/>] 
+ 
+ Remarque: par convention, le nom des dépôts Git finit par *.git*
+
+---
+## Connexion au dépôt distant
+
+
++ Dans Pycharm, via le menu contextuel du projet, utilisez la commande `Git > Repository > Push`
+
+.center[<img src="./images/remoting2.png" width="83%"/>]
+
+---
+## Connexion au dépôt distant
+
+
++ Dans la fenêtre qui s'ouvre cliquez sur `Define remote`
+
+.center[<img src="./images/remoting3.png" width="33%"/>]
+
++ Laissez le nom *origin* 
++ Indiquez comme URL l'adresse de votre dépôt distant et validez en cliquant sur `Ok`
+
+.center[<img src="./images/remoting4.png" width="23%"/>]
+
+L'URL indique le protocole de connexion :
+
+ + **HTTPS** : https://github.com/francoisandre/gtdrosea_workshop.git
+ + **SSH** : git@github.com:francoisandre/gtdrosea_workshop.git
+---
+
+class: center, middle, inverse
 ## Conclusion 
 ---
 ## Pour aller plus loin : 
@@ -954,7 +1015,7 @@ class: center, middle, inverse
  - Ouvrage de référence 
  - Disponible gratuitement en français : https://git-scm.com/book/fr/v2 (différents formats: pdf, html, epub...)
 
-** Tutotiel(s) **
+** Tutoriel(s) **
  
  - http://www.grafikart.fr/formations/git
 ---
