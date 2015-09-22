@@ -979,15 +979,17 @@ Git offre beaucoup de souplesse dans la gestion des dépôts distants :
  Remarque: par convention, le nom des dépôts Git finit par *.git*
 
 ---
-## Connexion au dépôt distant
+## Connexion au dépôt distant (et premier envoi)
 
 
 + Dans Pycharm, via le menu contextuel du projet, utilisez la commande `Git > Repository > Push`
 
+*Push* est la commande qui indique à Git de transférer des fichiers vers le dépôt distant.
+
 .center[<img src="./images/remoting2.png" width="83%"/>]
 
 ---
-## Connexion au dépôt distant
+## Connexion au dépôt distant (et premier envoi)
 
 
 + Dans la fenêtre qui s'ouvre cliquez sur `Define remote`
@@ -999,10 +1001,134 @@ Git offre beaucoup de souplesse dans la gestion des dépôts distants :
 
 .center[<img src="./images/remoting4.png" width="23%"/>]
 
-L'URL indique le protocole de connexion :
+---
+## Connexion au dépôt distant (et premier envoi)
 
- + **HTTPS** : https://github.com/francoisandre/gtdrosea_workshop.git
- + **SSH** : git@github.com:francoisandre/gtdrosea_workshop.git
+### Remarques
+
+ + *origin* est le nom d'usage pour le serveur distant central.
+ + L'URL indique le protocole de connexion :
+
+   + **HTTPS** : https://github.com/francoisandre/gtdrosea_workshop.git
+   + **SSH** : git@github.com:francoisandre/gtdrosea_workshop.git
+
++ Finalisez le transfert en 
+ + Cliquant sur `Push tags`
+ + Cliquant sur `Push`
+
+.center[<img src="./images/remoting5.png" width="25%"/>]
+
+---
+## Connexion au dépôt distant (et premier envoi)
+
+<div class="100pct" >
+<div class="happy box">
+.label[Mode commande]
+</div>
+ .gitCommand[
+```terminal
+$ git remote add aliasduremote cheminduremote (pour ajouter un remote)
+$ git push aliasduremote nomdemabranche (pour transférer une branche sur un remote)
+```
+]
+</div>
+
+---
+## Récupération du dépôt distant
+
+Nous allons récupérer le projet à partir du dépôt distant pour simuler un deuxième développeur
+
+Dans le menu `VCS`, Sélectionnez `Checkout from Version Control`puis `Git`
+
+.center[<img src="./images/remoting6.png" width="33%"/>]
+
+
+Le terme *Checkout* est ici inadapté, il s'agit d'un *Clone* qui va - par défaut - récupérer l'intégralité de l'historique du projet
+
+---
+## Récupération du dépôt distant
+
++ Indiquez l'adresse du dépôt distant
++ Indiquez comme nom de projet *monProjetDev2*
++ Validez en cliquant sur `Clone`
+.center[<img src="./images/remoting7.png" width="43%"/>]
+
++ Validez les boîtes de dialogues qui apparaissent alors et indiquez que vous souhaitez voir le projet dans une nouvelle fenêtre
+
+Dans la barre de statut vous remarquez que Git est activé et pointe alors sur la branche *master* qui n'existe pas dans notre dépôt distant.
+
+.center[<img src="./images/remoting8.png" width="17%"/>]
+
+---
+
+## Récupération du dépôt distant
+
++ Dans la barre de statut, choisissez la branche *develop* et cliquez sur `Checkout as new local branch...`
+
+.center[<img src="./images/remoting9.png" width="43%"/>]
+
++ A l'issue du traitement, on retrouve le projet complet dans l'environnement du deuxième développeur
+
+.center[<img src="./images/remoting10.png" width="43%"/>]
+
+
+---
+
+## Transfert d'un commit (push)
+
++ Dans *monProjetDev2*, créez un fichier *fichier5.txt* avec comme contenu *Contenu du fichier fichier5.txt*
+
++ Faites un *commit* de ce fichier, mais dans la fenêtre de *commit* 
+
+  + Indiquez comme auteur *Developpeur 2* 
+  + Choisissez l'option `Commit and push...`
+
+.center[<img src="./images/remoting11.png" width="34%"/>]
+
++ Cliquez sur `Push` dans la fenêtre suivante
+
+Le contenu du *commit* a été transféré sur le dépôt distant
+
+---
+
+## Récupération d'un commit (pull)
+
++ Dans *monProjet*, à partir du menu contextuel du projet choisissez ` Git > Repository > Pull `
+
+.center[<img src="./images/remoting12.png" width="74%"/>]
+
++ Validez la fenêtre suivante en cliquant sur `Pull` 
+
+---
+
+## Récupération d'un commit (pull)
+
++ Le *commit* contenant *fichier5.txt* a été récupéré dans *monProjet*
+
+.center[<img src="./images/remoting13.png" width="74%"/>]
+
+<div class="100pct" >
+<div class="happy box">
+.label[Mode commande]
+</div>
+ .gitCommand[
+```terminal
+$ git pull aliasduremote (récupération de toutes les branches)
+$ git pull aliasduremote nomdelabranche (récupération d une branche)
+$ git fetch aliasduremote nomdelabranche (récuếration d une branche 
+en vue d une fusion manuelle)
+```
+]
+</div>
+
+---
+
+## Remarques sur les *remotes*
+
++ Avec les *remotes*, les développeurs vont être confrontés aux problèmes classiques de fusions, vus précédemment
+
++ Des nouveaux problèmes vont apparaître : suppression de branches distantes, ...
+
 ---
 
 class: center, middle, inverse
